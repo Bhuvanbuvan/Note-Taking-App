@@ -1,11 +1,11 @@
 package com.example.notetakingapp.repository
 
-import androidx.room.Query
+import android.provider.ContactsContract
 import com.example.notetakingapp.database.NoteDatabase
 import com.example.notetakingapp.model.Note
 
 class NoteRepository(private val db:NoteDatabase) {
-    suspend fun insternote(note: Note)= db.getNoteDao().insertNote(note)
+    suspend fun insternote(note:Note)= db.getNoteDao().insertNote(note)
 
     suspend fun updateNote(note: Note)=db.getNoteDao().updateNote(note)
 
