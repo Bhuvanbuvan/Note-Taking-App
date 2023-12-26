@@ -31,7 +31,7 @@ class HomeFragment : Fragment(R.layout.fragment_home),SearchView.OnQueryTextList
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         _binding =FragmentHomeBinding.inflate(inflater,container,false)
 
@@ -53,21 +53,23 @@ class HomeFragment : Fragment(R.layout.fragment_home),SearchView.OnQueryTextList
 
     private fun setUpRecyclerView() {
         noteAdapter= NoteAdapter()
+
+
         binding.recyclerView.apply {
             layoutManager=StaggeredGridLayoutManager(
                 2,
-                StaggeredGridLayoutManager.VERTICAL
-            )
+                StaggeredGridLayoutManager.VERTICAL)
             setHasFixedSize(true)
             adapter=noteAdapter
         }
+
         activity?.let {
             noteViewModel.getNotes().observe(
-                viewLifecycleOwner,{
-                    note->noteAdapter.differ.submitList(note)
-                    updateUI(note)
-                }
-            )
+                viewLifecycleOwner
+            ) { datas ->
+                noteAdapter.differ.submitList(datas)
+                updateUI(datas)
+            }
         }
     }
 
@@ -82,6 +84,7 @@ class HomeFragment : Fragment(R.layout.fragment_home),SearchView.OnQueryTextList
             }
         }
     }
+
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
@@ -108,9 +111,8 @@ class HomeFragment : Fragment(R.layout.fragment_home),SearchView.OnQueryTextList
     private fun searchNote(query: String?) {
         val searchQueray="%$query"
         noteViewModel.search(searchQueray).observe(
-            this,
+            this)
             {list->noteAdapter.differ.submitList(list)}
-        )
 
     }
 

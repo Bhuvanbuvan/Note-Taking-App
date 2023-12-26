@@ -14,9 +14,9 @@ import com.example.notetakingapp.model.Note
 import java.util.Random
 
 
-class NoteAdapter():Adapter<NoteAdapter.MyViewModel>() {
+class NoteAdapter:Adapter<NoteAdapter.MyViewModel>() {
     class MyViewModel(val binding: NoteLayoutBinding):ViewHolder(binding.root)
-        private val differutilcallback= object :DiffUtil.ItemCallback<Note>(){
+        private val differUtilCallBack= object :DiffUtil.ItemCallback<Note>(){
             override fun areItemsTheSame(oldItem: Note, newItem: Note): Boolean {
                 return oldItem.id==newItem.id &&
                         oldItem.noteBody==newItem.noteBody &&
@@ -30,7 +30,7 @@ class NoteAdapter():Adapter<NoteAdapter.MyViewModel>() {
         }
 
 
-    val differ =AsyncListDiffer(this,differutilcallback)
+    val differ =AsyncListDiffer(this,differUtilCallBack)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewModel {
         return MyViewModel(
@@ -41,10 +41,10 @@ class NoteAdapter():Adapter<NoteAdapter.MyViewModel>() {
     }
 
     override fun onBindViewHolder(holder: MyViewModel, position: Int) {
-        val currentnote=differ.currentList[position]
+        val currentNote=differ.currentList[position]
 
-        holder.binding.Tvnotetitle.text=currentnote.noteTitle
-        holder.binding.tvnotebody.text=currentnote.noteBody
+        holder.binding.Tvnotetitle.text=currentNote.noteTitle
+        holder.binding.tvnotebody.text=currentNote.noteBody
 
         val random=Random()
         val color=Color.argb(
@@ -56,9 +56,9 @@ class NoteAdapter():Adapter<NoteAdapter.MyViewModel>() {
 
         holder.binding.ibcolor.setBackgroundColor(color)
 
-        holder.itemView.setOnClickListener(){
+        holder.itemView.setOnClickListener{
             val direction =HomeFragmentDirections.
-            actionHomeFragmentToUpdateFragment(currentnote)
+            actionHomeFragmentToUpdateFragment(currentNote)
             it.findNavController().navigate(direction)
 
 

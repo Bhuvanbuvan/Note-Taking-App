@@ -63,7 +63,7 @@ dependencies {
 
 
     // Coroutines
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2")
     implementation ("androidx.room:room-ktx:${room_version()}")
 
 
