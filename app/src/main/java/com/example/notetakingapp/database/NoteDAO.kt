@@ -8,10 +8,12 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
 import com.example.notetakingapp.model.Note
+import kotlin.coroutines.Continuation
+
 @Dao
 interface NoteDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertion(note: Note)
+    suspend fun insertNote(note:Note)
 
     @Update
     suspend fun updateNote(note: Note)

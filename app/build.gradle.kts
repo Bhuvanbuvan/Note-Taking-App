@@ -54,7 +54,7 @@ dependencies {
 
 
     // ROOM
-    fun room_version() = "2.4.3"
+    fun room_version() = "2.6.1"
     implementation ("androidx.room:room-runtime:${room_version()}")
 
     // To use Kotlin annotation processing tool (kapt)
@@ -63,7 +63,7 @@ dependencies {
 
 
     // Coroutines
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9")
     implementation ("androidx.room:room-ktx:${room_version()}")
 
 
@@ -74,7 +74,7 @@ dependencies {
 
 
     // Life Cycle Arch
-    fun lifecycle_version() = "2.5.1"
+    fun lifecycle_version() = "2.6.2"
     // ViewModel
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:${lifecycle_version()}")
     // LiveData

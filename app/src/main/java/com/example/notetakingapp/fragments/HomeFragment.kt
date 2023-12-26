@@ -7,8 +7,6 @@ import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
-import androidx.core.graphics.green
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -19,7 +17,8 @@ import com.example.notetakingapp.databinding.FragmentHomeBinding
 import com.example.notetakingapp.model.Note
 import com.example.notetakingapp.viewmodel.NoteViewModel
 
-class HomeFragment : Fragment(R.layout.fragment_home),SearchView.OnQueryTextListener {
+class HomeFragment : Fragment(R.layout.fragment_home),SearchView.OnQueryTextListener,
+    androidx.appcompat.widget.SearchView.OnQueryTextListener {
     private var _binding:FragmentHomeBinding?=null
     private val binding get() = _binding!!
     private lateinit var noteViewModel: NoteViewModel
@@ -89,10 +88,10 @@ class HomeFragment : Fragment(R.layout.fragment_home),SearchView.OnQueryTextList
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         menu.clear()
-        inflater.inflate(R.menu.home_menu,menu)
+        inflater.inflate(R.menu.home_menu, menu)
 
-        val mMenuSearch=menu.findItem(R.id.icon_search).actionView as SearchView
-        mMenuSearch.isSubmitButtonEnabled=false
+        val mMenuSearch = menu.findItem(R.id.icon_search).actionView as androidx.appcompat.widget.SearchView
+        mMenuSearch.isSubmitButtonEnabled = false
         mMenuSearch.setOnQueryTextListener(this)
     }
 

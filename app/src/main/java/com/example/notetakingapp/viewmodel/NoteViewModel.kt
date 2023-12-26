@@ -15,7 +15,7 @@ class NoteViewModel(
 
         fun addNote(note:Note)=
             viewModelScope.launch {
-            repository.insternote(note)
+            repository.insertNote(note)
         }
 
     fun deleteNote(note:Note)=
@@ -28,8 +28,8 @@ class NoteViewModel(
         repository.updateNote(note)
     }
 
-    fun getNotes()= repository.getAllNote()
+    fun getNotes()= repository.getAllNotes()
 
     fun search(query: String?)=
-        repository.seracchNote(query)
+        repository.searchNote(query)
 }

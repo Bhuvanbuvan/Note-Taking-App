@@ -24,7 +24,6 @@ class newFragment : Fragment(R.layout.fragment_new) {
     private var _binding: FragmentNewBinding?=null
     private val binding get() = _binding!!
     private lateinit var noteViewModel: NoteViewModel
-    private lateinit var noteAdapter: NoteAdapter
     private lateinit var mView: View
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,6 +42,7 @@ class newFragment : Fragment(R.layout.fragment_new) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         noteViewModel= (activity as MainActivity).noteViewModel
+        mView=view
         
     }
 
@@ -63,15 +63,6 @@ class newFragment : Fragment(R.layout.fragment_new) {
         }
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId){
-            R.id.menu_save->{
-                savenote(mView)
-            }
-
-        }
-        return super.onOptionsItemSelected(item)
-    }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         menu.clear()
@@ -82,5 +73,13 @@ class newFragment : Fragment(R.layout.fragment_new) {
     override fun onDestroy() {
         super.onDestroy()
         _binding=null
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.menu_save -> {
+                savenote(mView)
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
